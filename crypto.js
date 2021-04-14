@@ -35,25 +35,30 @@ const crypto = require('crypto');
  * AES是一种常用的对称加密算法，加解密都用同一个密匙。crypto模块提供了AES支持，但是需要封装好函数
  */
 
-function aesEncrypt(data, key) {
-    const cipher = crypto.createCipher('aes192', key);
-    var crypted = cipher.update(data, 'utf8', 'hex');
-    crypted += cipher.final('hex');
-    return crypted;
-}
+// function aesEncrypt(data, key) {
+//     const cipher = crypto.createCipher('aes192', key);
+//     var crypted = cipher.update(data, 'utf8', 'hex');
+//     crypted += cipher.final('hex');
+//     return crypted;
+// }
 
-function aesDecrypt(encrypted, key) {
-    const decipher = crypto.createDecipher('aes192', key);
-    var decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
-}
+// function aesDecrypt(encrypted, key) {
+//     const decipher = crypto.createDecipher('aes192', key);
+//     var decrypted = decipher.update(encrypted, 'hex', 'utf8');
+//     decrypted += decipher.final('utf8');
+//     return decrypted;
+// }
 
-var data = 'Hello, this is a secret message!';
-var key = 'Password!';
-var encrypted = aesEncrypt(data, key);
-var decrypted = aesDecrypt(encrypted, key);
+// var data = 'Hello, this is a secret message!';
+// var key = 'Password!';
+// var encrypted = aesEncrypt(data, key);
+// var decrypted = aesDecrypt(encrypted, key);
 
-console.log('Plain text: ' + data);
-console.log('Encrypted text: ' + encrypted);
-console.log('Decrypted text: ' + decrypted);
+// console.log('Plain text: ' + data);
+// console.log('Encrypted text: ' + encrypted);
+// console.log('Decrypted text: ' + decrypted);
+
+/**
+ * Diffie-Hellman
+ * DH算法是一种密匙交换协议，它可以让双方在不泄露密匙的情况下协商出一个密匙来。DH算法基于数学原理
+ */
