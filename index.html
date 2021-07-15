@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
-    <title>DD</title>
+    <meta charset="UTF-8">
+    <title>前端播放m3u8格式视频</title>
+    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+    <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js" type="text/javascript"></script>
+    <!-- videojs-contrib-hls 用于在电脑端播放 如果只需手机播放可以不引入 -->
 </head>
 
 <body>
-    <div>1</div>
+    <style>
+        .video-js .vjs-tech {
+            position: relative !important;
+        }
+    </style>
+    <div>
+        <video id="myVideo" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}' style='width: 100%;height: auto'>
+        </video>
+    </div>
+    <!-- <div class="qiehuan" style="width:100px;height: 100px;background: red;margin:0 auto;line-height: 100px;color:#fff;text-align: center">切换视频</div> -->
 </body>
 
-</html>
+<script>
+    window.onload = function() {
+        // var xhr = new XMLHttpRequest();
+        // var url = "http://192.168.50.141:8888/medium.m3u8?key=";
+        // xhr.open('GET', `${url + window.btoa("hello")}`, true);
+        // xhr.onload = function(e) {
+        //     if (this.status == 200) { //请求成功
+        //         var myVideo = videojs('myVideo', {
+        //             bigPlayButton: true,
+        //             textTrackDisplay: false,
+        //             posterImage: false,
+        //             errorDisplay: false,
+        //         })
+
+        //         var changeVideo = function(vdoSrc) {
+        //             if (/\.m3u8$/.test(vdoSrc)) {
+        //                 myVideo.src({
+        //                     src: vdoSrc,
+        //                     type: 'application/x-mpegURL'
+        //                 })
+        //             } else {
+        //                 myVideo.src(vdoSrc)
+        //             }
+        //             myVideo.load();
+        //             myVideo.play();
+        //         }
+        //         const m3u8 = window.atob(this.response)
+        //         changeVideo(m3u8);
+        //         // document.querySelector('.qiehuan').addEventListener('click', function () {
+        //         //     changeVideo(m3u8);
+        //         // })
+        //     }
+        // };
+        // xhr.send();
+
+        var myVideo = videojs('myVideo', {
+            bigPlayButton: true,
+            textTrackDisplay: false,
+            posterImage: false,
+            errorDisplay: false,
+        })
+
+        var changeVideo = function(vdoSrc) {
+            if (/\.m3u8$/.test(vdoSrc)) {
+                myVideo.src({
+                    src: vdoSrc,
+                    type: 'application/x-mpegURL'
+                })
+            } else {
+                myVideo.src(vdoSrc)
+            }
+            myVideo.load();
+            myVideo.play();
+        }
+        const m3u8 = window.atob('aHR0cHM6Ly9hY2hpcnNoLmdpdGh1Yi5pby92aWRlb3MvZGVtby5tM3U4')
+        changeVideo(m3u8);
+    }
+</script>
